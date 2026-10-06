@@ -4,3 +4,6 @@
 [submodule "external/nob"]
 	path = external/nob
 	url = https://github.com/tsoding/nob.h.git
+[submodule "external/crow"]
+	path = external/crow
+	url = https://github.com/CrowCpp/Crow.git
