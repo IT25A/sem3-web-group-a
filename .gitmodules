@@ -1,5 +1,5 @@
-[submodule "external/external/Crow"]
-	path = external/external/Crow
+[submodule "external/Crow"]
+	path = external/Crow
 	url = https://github.com/CrowCpp/Crow.git
 [submodule "external/nob"]
 	path = external/nob
