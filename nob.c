@@ -43,6 +43,12 @@ int main(int argc, char **argv) {
         }
     }
 
+#ifdef _WIN32
+    nob_cmd_append(&cmd,
+     "-lws2_32",
+     "-lmswsock");
+#endif
+
     nob_cc_output(&cmd, BUILD_FOLDER "server" EXE);
 
     if (!nob_cmd_run_sync(cmd)) return 1;
