@@ -25,6 +25,7 @@ int main(int argc, char **argv) {
         "g++",
         "-std=c++20",
         "-I" CROW,
+	"-I" CROW "/crow",
         "-pthread" );
 
     nob_cc_flags(&cmd);
