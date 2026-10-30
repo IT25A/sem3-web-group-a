@@ -25,6 +25,7 @@ int main(int argc, char **argv) {
         "g++",
         "-std=c++20",
         "-I" CROW,
+	"-I" CROW "/crow",
         "-pthread" );
 
     nob_cc_flags(&cmd);
@@ -42,6 +43,12 @@ int main(int argc, char **argv) {
             );
         }
     }
+
+#ifdef _WIN32
+    nob_cmd_append(&cmd,
+     "-lws2_32",
+     "-lmswsock");
+#endif
 
     nob_cc_output(&cmd, BUILD_FOLDER "server" EXE);
 

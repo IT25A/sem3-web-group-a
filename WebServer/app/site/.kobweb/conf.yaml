@@ -1,0 +1,14 @@
+site:
+  title: "FuelCalc"
+
+server:
+  files:
+    dev:
+      contentRoot: "build/processedResources/js/main/public"
+      script: "build/kotlin-webpack/js/developmentExecutable/FuelCalc.js"
+      api: "build/libs/FuelCalc.jar"
+    prod:
+      script: "build/kotlin-webpack/js/productionExecutable/FuelCalc.js"
+      siteRoot: ".kobweb/site"
+
+  port: 8080
