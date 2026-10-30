@@ -1,19 +1,22 @@
+#include <filesystem>
+
 #include <crow.h>
 
-#include <stdio.h>
+using namespace std;
 
-int main()
-{
+int main() {
     crow::SimpleApp app;
 
-    CROW_ROUTE(app, "/")([] {
-        return "Hello from Crow!";
+    CROW_ROUTE(app, "/FuelCalc")
+    ([](crow::request &req, crow::response &res) {
+        res.set_static_file_info("src/index.html", "text/html");
+        cout << std::filesystem::current_path() << endl;
+        res.end();
     });
 
-    CROW_ROUTE(app, "/<int>")([](int count) {
-        return crow::response(std::to_string(count));
-    });
-
+    CROW_STATIC_FILE(app, "/main.js", "src/main.js");
 
     app.port(18080).run();
+
+    return 0;
 }
