@@ -1,3 +1,4 @@
+<<<<<<< HEAD
     #include <stdio.h>
     #include <iostream>
     #include <filesystem>
@@ -30,6 +31,27 @@
         .port(8080)
         .multithreaded()
         .run();
+=======
+#include <filesystem>
+
+#include <crow.h>
+
+using namespace std;
+
+int main() {
+    crow::SimpleApp app;
+
+    CROW_ROUTE(app, "/FuelCalc")
+    ([](crow::request &req, crow::response &res) {
+        res.set_static_file_info("src/index.html", "text/html");
+        cout << std::filesystem::current_path() << endl;
+        res.end();
+    });
+
+    CROW_STATIC_FILE(app, "/main.js", "src/main.js");
+
+    app.port(18080).run();
+>>>>>>> 1b3bb1d52252f39418c8467b4f1028f0f25c7801
 
         return 0;
     }
