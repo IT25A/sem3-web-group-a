@@ -1,0 +1,7 @@
+services:
+  fuelcalc:
+    build: .
+    container_name: FuelCalc
+    ports:
+      - "80:8080"
+    restart: unless-stopped

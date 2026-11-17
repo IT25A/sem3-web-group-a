@@ -1,32 +1,35 @@
-#include <stdio.h>
+    #include <stdio.h>
+    #include <iostream>
+    #include <filesystem>
+    #include <vector>
 
-#include <crow.h>
-#include <http_response.h>
-#include <query_string.h>
+    #include <crow.h>
+    #include <http_response.h>
+    #include <query_string.h>
 
-int main()
-{
-    crow::SimpleApp app;
+    using namespace std;
 
-    CROW_ROUTE(app, "/crow")([] {
-        return "Hello from Crow!";
-    });
+    const auto src = std::filesystem::current_path().string();
 
-    CROW_ROUTE(app, "/crow/<int>")
-    .methods("PUT"_method)
-    ([](crow::request& req, crow::response& res, int count) {        
-        const crow::query_string qs = req.get_body_params();
-        std::cout << "Body: " << qs << std::endl;
+	#define CROW_STATIC_DIRECTORY "src/"
 
-        if(count == 0){
+    int main()
+    {
+        crow::SimpleApp app;
 
-        }
+        CROW_ROUTE(app, "/FuelCalc")
+        ([](crow::request &req, crow::response &res) {
+			cout << src << endl;
+            res.set_static_file_info("src/index.html", "text/html");
+            res.end();
+        });
 
-        res = crow::response(200, "Created!");
-        res.end();
-    });
+    	app.static_file("/main.js", CROW_STATIC_DIRECTORY "main.js");
 
-    app.port(80).run();
+        app.bindaddr("0.0.0.0")
+        .port(8080)
+        .multithreaded()
+        .run();
 
-    return 0;
-}
+        return 0;
+    }
