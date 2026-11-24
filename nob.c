@@ -23,10 +23,11 @@ int main(int argc, char **argv) {
     Nob_Cmd cmd = {0};
     nob_cmd_append(&cmd,
         "g++",
-        "-std=c++20",
+        "-std=c++17",
         "-I" CROW,
-	"-I" CROW "/crow",
-        "-pthread" );
+		"-I" CROW "/crow",
+        "-pthread",
+		);
 
     nob_cc_flags(&cmd);
 

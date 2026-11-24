@@ -8,14 +8,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
-RUN git clone --depth 1 https://github.com/xtensor-stack/xtl.git /tmp/xtl \
-    && cp -r /tmp/xtl/include/xtl /usr/local/include/ \
-    && rm -rf /tmp/xtl
-
-RUN git clone --depth 1 https://github.com/xtensor-stack/xtensor.git /tmp/xtensor \
-    && cp -r /tmp/xtensor/include/xtensor /usr/local/include/ \
-    && rm -rf /tmp/xtensor
-
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     git \
